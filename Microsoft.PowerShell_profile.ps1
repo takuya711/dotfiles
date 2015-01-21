@@ -1,3 +1,4 @@
+#for application
 Set-Alias vim 'C:\Program Files (x86)\vim\gvim.exe'
 Set-Alias subl 'C:\Program Files\Sublime Text 3\sublime_text.exe'
 Set-Alias processing 'C:\Users\Takuya\processing-2.2.1\processing.exe'
@@ -25,6 +26,8 @@ Set-Alias fusion360 'C:\Users\Takuya\AppData\Local\Autodesk\webdeploy\production
 Set-Alias firefox 'C:\Program Files (x86)\Mozilla Firefox\firefox.exe'
 if(Test-Path Function:\Prompt) {Rename-Item Function:\Prompt PrePoshGitPrompt -Force}
 
+
+#for git
 $env:path += ";" + (Get-Item "Env:ProgramFiles(x86)").Value + "\Git\bin"
 
 # Load posh-git example profile
@@ -35,6 +38,8 @@ function Prompt() {if(Test-Path Function:\PrePoshGitPrompt){++$global:poshScope;
 
 $GitPromptSettings.EnableFileStatus = $false    # 簡易ステータス非表示
 
+
+#for console
 function prompt {
    # our theme
    $cdelim = [ConsoleColor]::DarkCyan

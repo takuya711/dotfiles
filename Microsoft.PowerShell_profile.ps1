@@ -24,35 +24,54 @@ Set-Alias VNCviewer 'C:\Users\Takuya\Downloads\VNC-Viewer-5.2.2-Windows-64bit.ex
 Set-Alias visualstudio 'C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\devenv.exe'
 Set-Alias fusion360 'C:\Users\Takuya\AppData\Local\Autodesk\webdeploy\production\f0587cd38964118f8005389472d4fd4f3fd646f9\Fusion360.exe'
 Set-Alias firefox 'C:\Program Files (x86)\Mozilla Firefox\firefox.exe'
-if(Test-Path Function:\Prompt) {Rename-Item Function:\Prompt PrePoshGitPrompt -Force}
-
 
 #for git
 $env:path += ";" + (Get-Item "Env:ProgramFiles(x86)").Value + "\Git\bin"
 
-# Load posh-git example profile
+#Load posh-git example profile
 . 'C:\tools\poshgit\dahlbyk-posh-git-869d4c5\profile.example.ps1'
 
-Rename-Item Function:\Prompt PoshGitPrompt -Force
-function Prompt() {if(Test-Path Function:\PrePoshGitPrompt){++$global:poshScope; New-Item function:\script:Write-host -value "param([object] `$object, `$backgroundColor, `$foregroundColor, [switch] `$nonewline) " -Force | Out-Null;$private:p = PrePoshGitPrompt; if(--$global:poshScope -eq 0) {Remove-Item function:\Write-Host -Force}}PoshGitPrompt}
-
-$GitPromptSettings.EnableFileStatus = $false    # 簡易ステータス非表示
-
+#Getting git branch
+function git_branch {
+    git branch 2>$null |
+    where { -not [System.String]::IsNullOrEmpty($_.Split()[0]) } |
+    % { $bn = $_.Split()[1]
+        Write-Output "($bn)" }
+}
 
 #for console
 function prompt {
-   # our theme
-   $cdelim = [ConsoleColor]::DarkCyan
-   $chost = [ConsoleColor]::Green
-   $cloc = [ConsoleColor]::Cyan
- 
-   write-host "$([char]0x0A7) " -n -f $cloc
-   write-host ([net.dns]::GetHostName()) -n -f $chost
-   write-host ' {' -n -f $cdelim
-   write-host (shorten-path (pwd).Path) -n -f $cloc
-   write-host '}' -n -f $cdelim
-   return ' '
+	$promptString = "PS " + $(Get-Location) + ">"
+	# our theme
+	$cdelim = [ConsoleColor]::DarkGray
+	$chost = [ConsoleColor]::DarkGray
+	$cloc = [ConsoleColor]::Red
+	$cgit = [ConsoleColor]::DarkCyan
+
+	$gitbranch = git_branch
+
+	if ( $Host.Name -eq "ConsoleHost" )
+	{
+		write-host '[' -n -f $cdelim
+		write-host ($env:username) -n -f $chost
+		#write-host "@" -n -f $cdelim
+		#write-host ([net.dns]::GetHostName()) -n -f $chost
+		write-host ' ' -n -f $cdelim
+		write-host (shorten-path (pwd).Path).Replace("\","/") -n -f $cloc
+	   	write-host ']' -n -f $cdelim
+		write-Host "$gitBranch" -n -f $cgit 
+	   	write-host '$' -n -f $cdelim
+	}
+
+	else
+	{
+		Write-Host $promptString -n
+	}
+
+	return ' '
 }
+
+#shortening path
 function shorten-path([string] $path) {
    $loc = $path.Replace($HOME, '~')
    # remove prefix for UNC paths

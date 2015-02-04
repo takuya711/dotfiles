@@ -2,11 +2,22 @@
 set backspace=2
 syntax enable
 
+if has('win64') || has('win32')
+	set guioptions-=m
+	set guioptions-=T
+	set guioptions-=r
+	set guioptions-=R
+	set guioptions-=l
+	set guioptions-=L
+	set guioptions-=b
+endif
 
-"path settings
+"path and shell settings
 if has('win64') || has('win32')
 	:set runtimepath+=$HOME/vimfiles,$HOME/vimfiles/after
 	:set runtimepath+=$HOME/.vimrc
+	set shell=powershell
+	set shellcmdflag=-command
 endif
 
 "encoding

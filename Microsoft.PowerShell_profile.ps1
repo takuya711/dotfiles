@@ -33,10 +33,10 @@ $env:path += ";" + (Get-Item "Env:ProgramFiles(x86)").Value + "\Git\bin"
 
 #Getting git branch
 function git_branch {
-    git branch 2>$null |
-    where { -not [System.String]::IsNullOrEmpty($_.Split()[0]) } |
-    % { $bn = $_.Split()[1]
-        Write-Output "($bn)" }
+  git branch 2>$null |
+  where { -not [System.String]::IsNullOrEmpty($_.Split()[0]) } |
+  % { $bn = $_.Split()[1]
+      Write-Output "($bn)" }
 }
 
 #for console

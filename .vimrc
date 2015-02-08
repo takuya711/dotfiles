@@ -6,8 +6,12 @@ if has('vim_starting')
 		set nocompatible 
 	endif
 	
-	"Required
-  	set runtimepath+=~/vimfiles/bundle/neobundle.vim/
+    "Required
+    if has('win64') || has('win32')
+        set runtimepath+=~/vimfiles/bundle/neobundle.vim/
+    elseif has('unix')
+        set runtimepath+=~/.vim/bundle/neobundle.vim/
+    endif
 endif
 
 " Required:

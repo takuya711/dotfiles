@@ -5,7 +5,7 @@ if has('vim_starting')
 	if &compatible
 		set nocompatible 
 	endif
-	
+
     "Required
     if has('win64') || has('win32')
         set runtimepath+=~/vimfiles/bundle/neobundle.vim/
@@ -15,7 +15,11 @@ if has('vim_starting')
 endif
 
 " Required:
-call neobundle#begin(expand('~/vimfiles/bundle/'))
+if has('win64') || has('win32')
+    call neobundle#begin(expand('~/vimfiles/bundle/'))
+elseif has('unix')
+    call neobundle#begin(expand('~/.vim/bundle/'))
+endif
 
 "Let NeoBundle manage NeoBundle
 " Required:
@@ -24,13 +28,16 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'Townk/vim-autoclose'
-NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'mattn/emmet-vim'
-
+" NeoBundle 'thinca/vim-quickrun'
+"NeoBundle 'mattn/emmet-vim'
+"NeoBundle 'OmniSharp/omnisharp-vim'
+"NeoBundle 'tpope/vim-dispatch'
+"NeoBundle 'kien/ctrlp.vim'
+"NeoBundle 'scrooloose/syntastic'
+"NeoBundle 'OmniSharp/omnisharp-server'
 call neobundle#end()
 
 " Required:
@@ -107,5 +114,6 @@ nnoremap <F2> :NERDTreeToggle<CR>
 "font settings
 if has('win64') || has('win32')
 	set guifont=MeiryoKe_Gothic:h11:cSHIFTJIS
+	"set guifont=consolas:h11
 endif
 set ambiwidth=single

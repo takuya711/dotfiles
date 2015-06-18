@@ -27,6 +27,7 @@ Set-Alias firefox 'C:\Program Files (x86)\Mozilla Firefox\firefox.exe'
 Set-Alias kindle 'C:\Users\Takuya\AppData\Local\Amazon\Kindle\application\Kindle.exe'
 Set-Alias toefl 'C:\Program Files (x86)\McGraw-Hill\TOEFL Official Guide\TOEFL.exe'
 Set-Alias putty 'C:\Program Files (x86)\putty-gdi-20150228\putty.exe' 
+Set-Alias LTSpice 'C:\Program Files (x86)\LTC\LTspiceIV\scad3.exe' 
 
 #for git
 $env:path += ";" + (Get-Item "Env:ProgramFiles(x86)").Value + "\Git\bin"

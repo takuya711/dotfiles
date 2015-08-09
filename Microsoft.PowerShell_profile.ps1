@@ -1,6 +1,6 @@
 #load PC profile
 #make symbolic link as below
-. 'C:\Users\Takuya\Documents\WindowsPowerShell\user.PowerShell_profile.ps1'
+. $home"\Documents\WindowsPowerShell\user.PowerShell_profile.ps1"
 
 #for console
 function prompt {

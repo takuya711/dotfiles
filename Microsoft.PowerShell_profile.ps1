@@ -1,47 +1,6 @@
-#for application
-Set-Alias vim 'C:\Program Files (x86)\vim\gvim.exe'
-Set-Alias subl 'C:\Program Files\Sublime Text 3\sublime_text.exe'
-Set-Alias processing 'C:\Program Files\processing-2.2.1\processing.exe'
-Set-Alias processing-java 'C:\Program Files\processing-2.2.1\processing-java.exe'
-Set-Alias pdf-viewer 'C:\Program Files\Tracker Software\PDF Viewer\PDFXCview.exe'
-Set-Alias TexStudio 'C:\Program Files (x86)\TeXstudio\texstudio.exe'
-Set-Alias foobar2000 'C:\Program Files (x86)\foobar2000\foobar2000.exe'
-Set-Alias Chrome 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
-Set-Alias scilab 'C:\Program Files\scilab-5.5.1\bin\WScilex.exe'
-Set-Alias VirtualBox 'C:\Program Files\Oracle\VirtualBox\VirtualBox.exe'
-Set-Alias Inkscape 'C:\Program Files (x86)\Inkscape\inkscape.exe'
-Set-Alias Mingw 'C:\MinGW\libexec\mingw-get\guimain.exe'
-Set-Alias Eclipse 'C:\eclipse\eclipse.exe'
-Set-Alias CCleaner 'C:\Program Files\CCleaner\CCleaner64.exe'
-Set-Alias oo-draw 'C:\Program Files (x86)\OpenOffice.org 3\program\sdraw.exe'
-Set-Alias oo 'C:\Program Files (x86)\OpenOffice.org 3\program\soffice.exe'
-Set-Alias ms-excel 'C:\Program Files\Microsoft Office 15\root\office15\EXCEL.EXE'
-Set-Alias ms-word 'C:\Program Files\Microsoft Office 15\root\office15\WINWORD.EXE'
-Set-Alias ms-powerpoint 'C:\Program Files\Microsoft Office 15\root\office15\POWERPNT.EXE'
-Set-Alias Snipping-Tool 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Snipping Tool.lnk'
-Set-Alias teraterm 'C:\Program Files (x86)\teraterm\ttermpro.exe'
-Set-Alias VNCviewer 'C:\Users\Takuya\Downloads\VNC-Viewer-5.2.2-Windows-64bit.exe'
-Set-Alias visualstudio 'C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\devenv.exe'
-Set-Alias fusion360 'C:\Users\Takuya\AppData\Local\Autodesk\webdeploy\production\f0587cd38964118f8005389472d4fd4f3fd646f9\Fusion360.exe'
-Set-Alias firefox 'C:\Program Files (x86)\Mozilla Firefox\firefox.exe'
-Set-Alias kindle 'C:\Users\Takuya\AppData\Local\Amazon\Kindle\application\Kindle.exe'
-Set-Alias toefl 'C:\Program Files (x86)\McGraw-Hill\TOEFL Official Guide\TOEFL.exe'
-Set-Alias putty 'C:\Program Files (x86)\putty-gdi-20150228\putty.exe' 
-Set-Alias LTSpice 'C:\Program Files (x86)\LTC\LTspiceIV\scad3.exe' 
-
-#for git
-$env:path += ";" + (Get-Item "Env:ProgramFiles(x86)").Value + "\Git\bin"
-
-#Load posh-git example profile
-. 'C:\tools\poshgit\dahlbyk-posh-git-869d4c5\profile.example.ps1'
-
-#Getting git branch
-function git_branch {
-  git branch 2>$null |
-  where { -not [System.String]::IsNullOrEmpty($_.Split()[0]) } |
-  % { $bn = $_.Split()[1]
-      Write-Output "($bn)" }
-}
+#load PC profile
+#make symbolic link as below
+. 'C:\Users\Takuya\Documents\WindowsPowerShell\user.PowerShell_profile.ps1'
 
 #for console
 function prompt {
